@@ -330,6 +330,10 @@ export default function HomePage() {
         </form>
       </div>
 
+      <p className="mt-4 text-center text-xs text-slate-500">
+        AI can make mistakes. Please review the content before submitting.
+      </p>
+
       {toast && (
         <div
           className={`fixed bottom-6 left-1/2 z-50 max-w-md -translate-x-1/2 rounded-lg px-4 py-3 text-sm shadow-lg ${
