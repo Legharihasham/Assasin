@@ -52,7 +52,7 @@ export function buildCoverPageSection(fields: CoverPageFields) {
   // Helper: green label paragraph
   const labelPara = (text: string) =>
     new Paragraph({
-      children: [new TextRun({ text, color: "00B050", ...sz40 })],
+      children: [new TextRun({ text, color: "000000", ...sz40 })],
       spacing: { line: 360, lineRule: "auto" },
     });
 
@@ -60,8 +60,8 @@ export function buildCoverPageSection(fields: CoverPageFields) {
   const valuePara = (text: string) =>
     new Paragraph({
       children: [
-        new TextRun({ text: "\t", color: "4472C4", ...sz40 }),
-        new TextRun({ text, color: "4472C4", ...sz40 }),
+        new TextRun({ text: "\t", color: "000000", ...sz40 }),
+        new TextRun({ text, color: "000000", ...sz40 }),
       ],
       spacing: { line: 360, lineRule: "auto" },
     });
@@ -108,7 +108,7 @@ export function buildCoverPageSection(fields: CoverPageFields) {
             children: [
               new TextRun({
                 text: fields.assignmentTitle,
-                color: "7030A0",
+                color: "000000",
                 size: 40,
                 bold: true,
                 ...cascadia,
@@ -153,32 +153,6 @@ export function buildCoverPageSection(fields: CoverPageFields) {
       page: {
         size: { width: 12240, height: 15840 },
         margin: { top: 1440, right: 1440, bottom: 1440, left: 1440 },
-        borders: {
-          pageBorderTop: {
-            style: BorderStyle.SINGLE,
-            size: 12,
-            color: "4472C4",
-            space: 24,
-          },
-          pageBorderBottom: {
-            style: BorderStyle.SINGLE,
-            size: 12,
-            color: "4472C4",
-            space: 24,
-          },
-          pageBorderLeft: {
-            style: BorderStyle.SINGLE,
-            size: 12,
-            color: "4472C4",
-            space: 24,
-          },
-          pageBorderRight: {
-            style: BorderStyle.SINGLE,
-            size: 12,
-            color: "4472C4",
-            space: 24,
-          },
-        },
       },
     },
     children,
@@ -267,7 +241,7 @@ export async function buildAssignmentDocxBuffer(params: {
             font: "Arial",
             bold: true,
             size: 32,
-            color: "2E4057",
+            color: "000000",
           }),
         ],
       }),
@@ -315,7 +289,7 @@ export async function buildAssignmentDocxBuffer(params: {
             text: headerText,
             font: "Arial",
             size: 20,
-            color: "888888",
+            color: "000000",
           }),
         ],
       }),

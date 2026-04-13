@@ -63,11 +63,11 @@ Every assignment document generated for University of Lahore students MUST begin
 |---|---|
 | Font | Cascadia Code, Bold, throughout |
 | Logo | UoL logo PNG (see base64 below), centered, anchored to page, 3460750 × 1254760 EMUs |
-| Page border | Blue (`4472C4`), single, sz 12, all four sides, offset from page |
+| Page border | None |
 | Page size | US Letter (12240 × 15840 DXA) |
 | Margins | 1 inch all sides (1440 DXA) |
-| Label color | Green (`00B050`) |
-| Value color | Blue (`4472C4`) |
+| Label color | Black (`000000`) |
+| Value color | Black (`000000`) |
 | Label size | 20pt (sz val="40") |
 | Value size | 20pt (sz val="40") |
 | Line spacing | 360 (1.5×) on all field rows |
@@ -81,7 +81,7 @@ sapId           — e.g. "70146312"
 section         — e.g. "BSCS-6K"
 submittedTo     — e.g. "Ma'am Raheela"
 subject         — e.g. "Computer Networks"
-assignmentTitle — e.g. "Assignment 1" (optional purple header row, color 7030A0)
+assignmentTitle — e.g. "Assignment 1" (optional header row, color 000000)
 ```
 
 ### JavaScript Implementation — Cover Page Section
@@ -122,7 +122,7 @@ function buildCoverPageSection(fields) {
   // Helper: green label paragraph
   const labelPara = (text) =>
     new Paragraph({
-      children: [new TextRun({ text, color: '00B050', ...sz40 })],
+      children: [new TextRun({ text, color: '000000', ...sz40 })],
       spacing: { line: 360, lineRule: 'auto' },
     });
 
@@ -130,8 +130,8 @@ function buildCoverPageSection(fields) {
   const valuePara = (text) =>
     new Paragraph({
       children: [
-        new TextRun({ text: '\t', color: '4472C4', ...sz40 }),
-        new TextRun({ text, color: '4472C4', ...sz40 }),
+        new TextRun({ text: '\t', color: '000000', ...sz40 }),
+        new TextRun({ text, color: '000000', ...sz40 }),
       ],
       spacing: { line: 360, lineRule: 'auto' },
     });
@@ -172,7 +172,7 @@ function buildCoverPageSection(fields) {
       ? [
           new Paragraph({
             children: [
-              new TextRun({ text: fields.assignmentTitle, color: '7030A0', size: 40, bold: true, ...cascadia }),
+              new TextRun({ text: fields.assignmentTitle, color: '000000', size: 40, bold: true, ...cascadia }),
             ],
             spacing: { line: 360, lineRule: 'auto' },
           }),
@@ -208,12 +208,6 @@ function buildCoverPageSection(fields) {
       page: {
         size: { width: 12240, height: 15840 },
         margin: { top: 1440, right: 1440, bottom: 1440, left: 1440 },
-        borders: {
-          pageBorderTop:    { style: BorderStyle.SINGLE, size: 12, color: '4472C4', space: 24 },
-          pageBorderBottom: { style: BorderStyle.SINGLE, size: 12, color: '4472C4', space: 24 },
-          pageBorderLeft:   { style: BorderStyle.SINGLE, size: 12, color: '4472C4', space: 24 },
-          pageBorderRight:  { style: BorderStyle.SINGLE, size: 12, color: '4472C4', space: 24 },
-        },
       },
     },
     children,
@@ -272,8 +266,8 @@ createAssignmentDoc(
 - **ALWAYS include the cover page** as the first section of every UoL assignment document.
 - **NEVER change** font (Cascadia Code), colors, border, or logo dimensions.
 - **ALWAYS embed the logo** from the base64 string — do not load from an external URL or file path.
-- **Page border is blue (`4472C4`)** on all four sides, offset from page, sz 12.
-- **Labels are green (`00B050`)**, values are blue (`4472C4`), assignment title is purple (`7030A0`).
+- **Page border is None**.
+- **Labels are black (`000000`)**, values are black (`000000`), assignment title is black (`000000`).
 - **NEVER use a different page size** — always US Letter (12240 × 15840 DXA).
 - The cover page is **its own section** — assignment content always starts on a new page in a second section.
 - The `assignmentTitle` field is optional — omit it if not provided by the user.
