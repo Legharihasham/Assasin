@@ -166,9 +166,21 @@ export async function POST(req: NextRequest) {
         { status: 500 },
       );
     }
-    const message =
-      e instanceof Error ? e.message : "Generation failed. Please try again.";
-    return NextResponse.json({ error: message }, { status: 500 });
+    const message = e instanceof Error ? e.message : String(e);
+
+    if (message.includes("503") || message.toLowerCase().includes("high demand")) {
+      return NextResponse.json(
+        { error: "The AI model is currently experiencing high demand. Please try again after some time." },
+        { status: 503 },
+      );
+    } else if (message.includes("[GoogleGenerativeAI Error]")) {
+      return NextResponse.json(
+        { error: "The AI service encountered a temporary error. Please try again later." },
+        { status: 503 },
+      );
+    }
+
+    return NextResponse.json({ error: "An unexpected error occurred during generation. Please try again." }, { status: 500 });
   }
 
   let buffer: Buffer;
