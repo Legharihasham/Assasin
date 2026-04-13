@@ -106,7 +106,7 @@ A Next.js web application that generates AI-written, formatted university assign
 
 ## Rate Limiting
 
-Each IP address is limited to **5 requests per hour**. If you exceed the limit, you will see an error message and need to wait before generating again.
+Each IP address is limited to **3 requests per hour**. If you exceed the limit, you will see an error message and need to wait before generating again.
 
 ## License
 
