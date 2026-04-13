@@ -257,7 +257,7 @@ export default function HomePage() {
                 className="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2.5 text-slate-100 outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/30"
                 value={assignmentTitle}
                 onChange={(e) => setAssignmentTitle(e.target.value)}
-                placeholder="Shown as purple heading on cover"
+                placeholder="Shown at the top of cover page"
               />
             </label>
             <label className="block">
