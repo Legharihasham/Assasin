@@ -155,8 +155,8 @@ export default function HomePage() {
   return (
     <main className="mx-auto flex min-h-screen max-w-5xl flex-col px-4 py-10 sm:px-6">
       <header className="mb-10 text-center">
-        <p className="text-sm font-medium uppercase tracking-[0.2em] text-violet-400/90">
-          University of Lahore
+        <p className="text-xl font-medium uppercase tracking-[0.1em] text-violet-400/90">
+          Assassin
         </p>
         <h1 className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
           UoL Assignment Generator
