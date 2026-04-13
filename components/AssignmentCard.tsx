@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Copy, Check } from "lucide-react";
 
 type Preset = {
@@ -34,22 +34,41 @@ export default function AssignmentCard() {
   const [index, setIndex] = useState(0);
   const [fading, setFading] = useState(false);
   const [copied, setCopied] = useState(false);
+  const fadeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const copyTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setFading(true);
-      setTimeout(() => {
+      fadeTimeoutRef.current = setTimeout(() => {
         setIndex((prev) => (prev + 1) % PRESETS.length);
         setFading(false);
       }, 400); // fade out duration
     }, 3500);
-    return () => clearInterval(timer);
+    return () => {
+      clearInterval(timer);
+      if (fadeTimeoutRef.current) clearTimeout(fadeTimeoutRef.current);
+    };
   }, []);
 
   const handleCopy = () => {
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    const preset = PRESETS[index];
+    const text = `${preset.subject}\nType: ${preset.type} · Difficulty: ${preset.difficulty}\n\n${preset.content}`;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        setCopied(true);
+        copyTimeoutRef.current = setTimeout(() => setCopied(false), 2000);
+      }).catch(() => {
+        // fallback: silently ignore if clipboard write fails
+      });
+    }
   };
+
+  useEffect(() => {
+    return () => {
+      if (copyTimeoutRef.current) clearTimeout(copyTimeoutRef.current);
+    };
+  }, []);
 
   const preset = PRESETS[index];
 
@@ -64,6 +83,7 @@ export default function AssignmentCard() {
           onClick={handleCopy}
           className="text-[#9B9B98] hover:text-[#0C0C0B] transition-colors"
           title="Copy"
+          aria-label={copied ? "Copied" : "Copy assignment"}
         >
           {copied ? <Check size={16} className="text-emerald-500" /> : <Copy size={16} />}
         </button>

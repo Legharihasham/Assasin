@@ -11,7 +11,7 @@ export default function HeroSection() {
       
       <div className="relative z-10 max-w-3xl mx-auto text-center w-full mb-10">
         <h1 className="font-serif text-[44px] sm:text-[72px] leading-[1.05] text-[#0C0C0B] mb-6 flex flex-col items-center justify-center whitespace-normal">
-          <div className="overflow-hidden">
+          <span className="overflow-hidden block">
             <motion.span
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -20,8 +20,8 @@ export default function HeroSection() {
             >
               Create assignments
             </motion.span>
-          </div>
-          <div className="overflow-hidden">
+          </span>
+          <span className="overflow-hidden block">
             <motion.span
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -30,7 +30,7 @@ export default function HeroSection() {
             >
               in <em className="italic">seconds</em>.
             </motion.span>
-          </div>
+          </span>
         </h1>
         <motion.p 
           className="text-[18px] text-[#6B6B68] max-w-[480px] mx-auto mb-10"

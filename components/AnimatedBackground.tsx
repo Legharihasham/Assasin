@@ -1,12 +1,14 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 export default function AnimatedBackground() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0" aria-hidden="true">
       {/* Ambient Glowing Orbs */}
       <motion.div
-        animate={{
+        animate={shouldReduceMotion ? {} : {
           x: [0, 100, 0],
           y: [0, 50, 0],
           scale: [1, 1.1, 1],
@@ -20,7 +22,7 @@ export default function AnimatedBackground() {
       />
       
       <motion.div
-        animate={{
+        animate={shouldReduceMotion ? {} : {
           x: [0, -100, 0],
           y: [0, -50, 0],
           scale: [1, 1.2, 1],
@@ -35,7 +37,7 @@ export default function AnimatedBackground() {
       />
       
       <motion.div
-        animate={{
+        animate={shouldReduceMotion ? {} : {
           x: [0, 50, -50, 0],
           y: [0, 100, 50, 0],
           scale: [1, 1.1, 0.9, 1],

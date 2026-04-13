@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 export default function Footer() {
   return (
     <footer className="bg-[#0C0C0B] border-t border-[#1E1E1C] px-6 h-20 w-full flex items-center justify-between text-[13px]">
