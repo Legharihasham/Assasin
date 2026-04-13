@@ -1,6 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-/** Stable model for generateContent; override with GEMINI_MODEL if Google renames endpoints. */
 const DEFAULT_GEMINI_MODEL = "gemini-2.5-flash";
 
 export interface AssignmentSection {

@@ -166,9 +166,20 @@ export async function POST(req: NextRequest) {
         { status: 500 },
       );
     }
-    const message =
-      e instanceof Error ? e.message : "Generation failed. Please try again.";
-    return NextResponse.json({ error: message }, { status: 500 });
+    let message = e instanceof Error ? e.message : String(e);
+    let userMessage = "Generation failed. Please try again.";
+
+    if (message.includes("503") || message.toLowerCase().includes("high demand")) {
+      userMessage = "The AI model is currently experiencing high demand. Please try again after some time.";
+    } else if (message.includes("[GoogleGenerativeAI Error]")) {
+      userMessage = "The AI service encountered a temporary error. Please try again later.";
+    } else if (e instanceof Error && e.message) {
+      // If it's a generic error but doesn't have the Google tag, we can carefully expose it or stick to standard.
+      // We'll just stick to the generic one to be safe and avoid showing technical stack traces.
+      userMessage = "An unexpected error occurred during generation. Please try again.";
+    }
+
+    return NextResponse.json({ error: userMessage }, { status: 500 });
   }
 
   let buffer: Buffer;
